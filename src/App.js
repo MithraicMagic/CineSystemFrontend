@@ -1,15 +1,46 @@
 import React from 'react';
-import Frank from './frank';
-import Header from './Header';
+import Movie from './Movie';
+import Header from './Header/Header';
+import UsersPage from './Users/Main';
 import './style.scss'
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <Frank/>
-    </div>
-  );
-}
+export default function BasicExample() {
+    return (
+      <Router>
+        <div>
+          <Header />
+          
+          <Switch>
+            <Route exact path="/"><Home/></Route> 
+            <Route path="/about"><About/></Route> 
+            <Route path="/users"><Users/></Route> 
+          </Switch>
+        </div>
+      </Router>
+    )}
 
-export default App;
+    function Home() {
+      return (
+        <div className="App">
+          <Movie/>
+        </div>
+      )
+    }
+
+    function About() {
+      return (
+        <div className="App">
+          <Movie/>
+        </div>
+      )
+    }
+
+    function Users() {
+      return (
+        <div className="App">
+          <UsersPage/>
+        </div>
+      )
+    }
+

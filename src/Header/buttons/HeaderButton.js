@@ -1,10 +1,10 @@
 import React from 'react';
-import './style.scss'
+import styles from './style.module.scss'
 
 class HeaderButton extends React.Component {
     render() {
         return (
-            <a href={this.props.href}>{this.props.children}</a>
+            <a className={styles.button} href={this.props.href}>{this.props.children}</a>
         )
     }
 }

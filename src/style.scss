@@ -1,7 +1,7 @@
-$main: rgb(50, 50, 75);
+@import "./colors";
 
 body {
     text-align: center;
-    background: $main;
+    background: $main-dark-blue;
     color: white;
 }
