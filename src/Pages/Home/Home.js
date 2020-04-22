@@ -18,7 +18,7 @@ class Home extends React.Component {
     }
 
     async getMoviesFromDb() {
-        await fetch('http://localhost:8080/movies/all')
+        await fetch('https://ikhoudvanfilms.com/api/movies/all')
         .then((res) => res.json())
         .then((res) => {
             res.forEach(movie => {

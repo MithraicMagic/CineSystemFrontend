@@ -7,7 +7,7 @@ export default class Users extends React.Component {
     } 
 
     componentDidMount() {
-        fetch("http://localhost:8080/users/byScore?points=100")
+        fetch("https://ikhoudvanfilms.com/api/users/byScore?points=100")
         .then(res => res.json())
         .then(res => this.setState({data: res}))
     }
