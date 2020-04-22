@@ -3,14 +3,7 @@ pipeline {
     
   tools {nodejs "ReactApp-Fun"}
     
-  stages {
-        
-    stage('Cloning Git') {
-      steps {
-        git 'https://github.com/MithraicMagic/CineSystemFrontend'
-      }
-    }
-        
+  stages {        
     stage('Install dependencies') {
       steps {
         sh 'npm install'
