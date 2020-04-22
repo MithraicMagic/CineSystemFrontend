@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default class Header extends React.Component {
+export default class Users extends React.Component {
     constructor() {
         super();
         this.state = {data: []};
     } 
 
     componentDidMount() {
-        fetch("http://localhost:8080/users/usersByScore?points=100")
+        fetch("http://localhost:8080/users/byScore?points=100")
         .then(res => res.json())
         .then(res => this.setState({data: res}))
     }

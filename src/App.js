@@ -1,46 +1,24 @@
 import React from 'react';
-import Movie from './Movie';
-import Header from './Header/Header';
-import UsersPage from './Users/Main';
+import Header from './Components/Header/Header';
 import './style.scss'
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-export default function BasicExample() {
-    return (
-      <Router>
-        <div>
-          <Header />
-          
-          <Switch>
-            <Route exact path="/"><Home/></Route> 
-            <Route path="/about"><About/></Route> 
-            <Route path="/users"><Users/></Route> 
-          </Switch>
-        </div>
-      </Router>
-    )}
+import Home from './Pages/Home/Home';
+import Users from './Pages/Users/Users';
+import About from './Pages/About/About';
+import Movie from './Pages/Movie/Movie';
 
-    function Home() {
-      return (
-        <div className="App">
-          <Movie/>
-        </div>
-      )
-    }
-
-    function About() {
-      return (
-        <div className="App">
-          <Movie/>
-        </div>
-      )
-    }
-
-    function Users() {
-      return (
-        <div className="App">
-          <UsersPage/>
-        </div>
-      )
-    }
+export default function App() {
+  return (
+    <Router>
+      <Header/>
+      <Switch>
+        <Route exact path={'/'} component={Home}/>
+        <Route path={'/about'} component={About}/>
+        <Route path={'/users'} component={Users}/>
+        <Route path={'/movie/:id'} component={Movie}/>
+      </Switch>
+    </Router>
+  )
+}
 

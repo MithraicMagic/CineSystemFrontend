@@ -1,0 +1,38 @@
+@import './../../colors';
+
+.home {
+    width: 100%;
+    height: calc(100vh - 60px);
+}
+
+.movie-container {
+    background-color: $dark-blue-darker;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 5px;
+
+    .movie {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+
+        img {
+            border-radius: 5px;
+        }
+
+        .movie-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .movie-title {
+                font-size: 30px;
+            }
+
+        }
+    }
+}
