@@ -14,7 +14,7 @@ export default class Movie extends Component {
         fetch('https://ikhoudvanfilms.com/api/movies/' + this.props.match.params.id)
         .then((res) => res.json())
         .then((res) => {
-            fetch('http://www.omdbapi.com/?apikey=190fc593&i=' + res.imdbID)
+            fetch('https://www.omdbapi.com/?apikey=190fc593&i=' + res.imdbID)
             .then((secondRes) => secondRes.json())
             .then((secondRes) => {
                 this.setState({movie: secondRes});

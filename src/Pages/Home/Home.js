@@ -29,7 +29,7 @@ class Home extends React.Component {
     
     getInfo() {
         this.state.dbMovies.forEach(m => {
-            fetch('http://www.omdbapi.com/?apikey=190fc593&i=' + m.imdbID)
+            fetch('https://www.omdbapi.com/?apikey=190fc593&i=' + m.imdbID)
             .then((res) => res.json())
             .then((res) => {
                 let movie = {dbId: m.id, title: res.Title, yearOfRelease: res.Year, poster: res.Poster};
