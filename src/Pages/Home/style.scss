@@ -31,6 +31,10 @@
 
             .movie-title {
                 font-size: 30px;
+                width: 300px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
         }
