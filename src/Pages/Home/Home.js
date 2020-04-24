@@ -40,7 +40,7 @@ class Home extends React.Component {
     }
 
     showMovies() {
-        this.state.movies.sort((a, b) => a.title - b.title);
+        this.state.movies.sort((a, b) => a.title.localeCompare(b.title));
 
         let elements = [];
         this.state.movies.forEach(movie => {
