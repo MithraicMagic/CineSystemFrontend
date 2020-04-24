@@ -36,7 +36,6 @@ export default class Movie extends Component {
                         <Info subject="Actors">{this.state.movie.Actors}</Info>
                         <Info subject="Producer">{this.state.movie.Production}</Info>
                     </div>
-                    <br/>
                     <div className="summary">{this.state.movie.Plot}</div>
                 </div>
             </div>

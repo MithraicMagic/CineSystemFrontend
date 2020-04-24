@@ -2,14 +2,13 @@
 
 .movie-page {
     height: calc(100vh - 60px);
-    padding: 0 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
 
     img {
         border-radius: 5px;
-        margin: 5px;
+        padding: 10px;
     }
 
     .movie-info {
@@ -18,6 +17,7 @@
         height: 100%;
         flex-direction: column;
         align-items: flex-start;
+        width: 900px;
 
         .title {
             align-self: center;
@@ -26,13 +26,37 @@
         }
 
         .extra-info {
+            margin: 5px 0;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            width: 100%;
+            text-align: left;
 
-            .subject {
-                color: $yellow;
+            div {
+                padding: 10px;
+
+                .subject {
+                    color: $yellow;
+                }
             }
+
+            div:nth-of-type(even) {
+                background: $dark-blue-darker;
+            }
+            div:nth-of-type(odd) {
+                background: $dark-blue-darkest;
+            }
+        }
+
+        .summary {
+            text-align: justify;
+            margin: 10px;
+        }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .movie-info {
+            width: 100%;
         }
     }
 }
