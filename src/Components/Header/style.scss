@@ -27,7 +27,6 @@
         align-items: center;
     
         height: 100%;
-        background: $navy-blue-darker;
         padding: 0 50px;
         text-decoration: none;
         color: white;
@@ -35,6 +34,28 @@
         
         &:hover {
             background: $navy-blue-darkest;
+        }
+    }
+
+    .dropdown {
+        position: relative;
+
+        * {
+            display: none;
+            position: absolute;
+            background-color: $dark-blue;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+            left: 0;
+            top: 100%;
+        }
+
+        &:hover {
+            * {
+                display: flex;
+            }
         }
     }
     

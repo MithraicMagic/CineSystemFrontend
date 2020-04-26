@@ -1,0 +1,11 @@
+.logout-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+
+    h1 {
+        font-size: 40px;
+        color: white;
+    }
+}

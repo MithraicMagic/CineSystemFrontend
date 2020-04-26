@@ -60,6 +60,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
+                <h1 className="header-text">Featured Movies</h1>
                 <div className="movie-container">
                     {this.showMovies()}
                 </div>
