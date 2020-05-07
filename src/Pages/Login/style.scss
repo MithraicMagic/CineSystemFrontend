@@ -67,14 +67,5 @@
         hr {
             width: 80%;
         }
-
-        #signup-button {
-            background: $yellow-lighter;
-
-            &:hover {
-                background: $yellow-lightest;
-                width: 98%;
-            }
-        }
     }
 }

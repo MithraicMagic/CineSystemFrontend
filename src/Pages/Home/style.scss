@@ -44,7 +44,55 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                 }
+            }
+        }
 
+        @media only screen and (max-width: 475px) {
+            .movie {
+                width: 250px;
+
+                img {
+                    width: 100%;
+                }
+
+                .movie-info {
+                    .movie-title {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .arrow-container {
+            width: 4em;
+            height: 4em;
+            border-radius: 50%;
+
+            transition: all 0.4s;
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(white, 0.1);
+            }
+
+            .arrow {
+                display: inline-block;
+                width: 1.4em;
+                height: 1.4em;
+                border: solid rgba(white, 0.3);
+                border-width: 0.5em 0.5em 0 0;
+
+                &.left {
+                    margin-top: 1.05em;
+                    margin-left: 0.6em;
+                    transform: rotate(-135deg);
+                }
+
+                &.right {
+                    margin-top: 1.05em;
+                    margin-left: -0.6em;
+                    transform: rotate(45deg);
+                }
             }
         }
     }

@@ -5,11 +5,40 @@ import { Link } from 'react-router-dom';
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {dbMovies: [], movies: []};
+        this.state = {
+            dbMovies: [],
+            movies: [],
+            amountShownMovies: Math.ceil(1 + ((window.innerWidth - 800) / 400)),
+            moviePage: 0};
+
+        this.updateWidth = this.updateWidth.bind(this);
+        this.updateMoviePage = this.updateMoviePage.bind(this);
     }
 
     componentDidMount() {
         this.getMovies();
+        window.addEventListener('resize', this.updateWidth);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWidth);
+    }
+
+    updateWidth() {
+        this.setState({amountShownMovies: Math.ceil(1 + ((window.innerWidth - 800) / 400)), moviePage: 0});
+    }
+
+    updateMoviePage(val) {
+        const maxPage = Math.ceil(this.state.dbMovies.length / this.state.amountShownMovies - 1);
+        let page = this.state.moviePage + val;
+
+        if (page < 0) {
+            page = 0;
+        } else if (page > maxPage) {
+            page = maxPage;
+        }
+
+        this.setState({moviePage: page});
     }
 
     async getMovies() {
@@ -43,17 +72,19 @@ class Home extends React.Component {
         this.state.movies.sort((a, b) => a.title.localeCompare(b.title));
 
         let elements = [];
-        this.state.movies.forEach(movie => {
+        for (let i = 0; i < this.state.amountShownMovies && i < this.state.movies.length; i++) {
+            const movie = this.state.movies[i + (this.state.amountShownMovies * this.state.moviePage)];
+            if (movie === undefined) break;
             elements.push(
                 <div key={movie.title} className="movie">
-                    <Link to={'/movie/' + movie.dbId}><img src={movie.poster} alt="Movie Poster"/></Link>
+                    <Link to={'/movie/' + movie.dbId}><img src={movie.poster} alt="Movie Poster" /></Link>
                     <div className="movie-info">
                         <div className="movie-title">{movie.title}</div>
                         <div className="movie-rating">{movie.yearOfRelease}</div>
                     </div>
                 </div>
             )
-        });
+        }
         return elements;
     }
 
@@ -62,7 +93,13 @@ class Home extends React.Component {
             <div className="home">
                 <h1 className="header-text">Featured Movies</h1>
                 <div className="movie-container">
+                    <div className="arrow-container" onClick={() => this.updateMoviePage(-1)}>
+                        <div className="arrow left"></div>
+                    </div>
                     {this.showMovies()}
+                    <div className="arrow-container" onClick={() => this.updateMoviePage(1)}>
+                        <div className="arrow right"></div>
+                    </div>
                 </div>
             </div>
         )
