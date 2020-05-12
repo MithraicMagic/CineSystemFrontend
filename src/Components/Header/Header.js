@@ -7,8 +7,8 @@ import Auth from '../../auth';
 export default class Header extends React.Component {
     getAccountButton() {
         if (Auth.isTokenPresent()) {
-            let firstBtn = <Link to={'/profile'} className="button">{sessionStorage.getItem('username')}</Link>
-            let secondBtn = <Link to={'/logout'} className="button">Logout</Link>
+            let firstBtn = <Link to={'/profile'} className="button" key={1}>{sessionStorage.getItem('username')}</Link>
+            let secondBtn = <Link to={'/logout'} className="button" key={2}>Logout</Link>
             return [firstBtn, secondBtn];
         }
 
