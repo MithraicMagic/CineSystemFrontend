@@ -75,18 +75,40 @@ export default class Profile extends Component {
     changeIcon() {
         let chosenIcon = document.getElementsByClassName('selected')[0];
 
-        const userInfo = this.state.userInfo;
-        userInfo.icon.source = chosenIcon.src;
+        fetch('https://ikhoudvanfilms.com/api/users/changeIcon', {
+            headers: {
+                'Authorization': sessionStorage.getItem('jwtoken'),
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                "source": chosenIcon.src
+            })
+        })
+        .then(res => res.json())
+        .then(res => {
+            this.toggleOverlay();
 
-        this.setState({userInfo: userInfo})
+            if (res.success) {
+                this.getUserInfo();
+            } else {
+                this.setError(res.message);
+            }
+        })
+        .catch(e => {
+            this.setError(e);
+        })
+    }
 
-        this.toggleOverlay();
+    setError(error) {
+        this.setState({error: error})
     }
 
     renderUserInformation() {
         if (this.state.userInfo != null) {
             return (
                 <div className="profile">
+                    {this.state.error !== null ? this.state.error : null}
                     <img src={this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
                     <p>{this.state.userInfo.username}</p>
                     <p>{this.state.userInfo.mail}</p>
