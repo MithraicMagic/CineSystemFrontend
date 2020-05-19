@@ -25,7 +25,7 @@
         .movie {
             display: flex;
             flex-direction: column;
-            margin: 10px;
+            margin: 20px 10px;
 
             img {
                 border-radius: 5px;
@@ -63,9 +63,26 @@
             }
         }
 
+        // For the very very very small phones
+        @media only screen and (max-width: 370px) {
+            .movie {
+                width: 200px;
+
+                img {
+                    width: 200px;
+                }
+
+                .movie-info {
+                    .movie-title {
+                        width: 200px;
+                    }
+                }
+            }
+        }
+
         .arrow-container {
-            width: 4em;
-            height: 4em;
+            width: 3em;
+            height: 3em;
             border-radius: 50%;
 
             transition: all 0.4s;
@@ -77,22 +94,57 @@
 
             .arrow {
                 display: inline-block;
-                width: 1.4em;
-                height: 1.4em;
+                width: 1.2em;
+                height: 1.2em;
                 border: solid rgba(white, 0.3);
                 border-width: 0.5em 0.5em 0 0;
 
                 &.left {
-                    margin-top: 1.05em;
-                    margin-left: 0.6em;
+                    margin-top: 0.67em;
+                    margin-left: 0.45em;
                     transform: rotate(-135deg);
                 }
 
                 &.right {
-                    margin-top: 1.05em;
-                    margin-left: -0.6em;
+                    margin-top: 0.67em;
+                    margin-left: -0.45em;
                     transform: rotate(45deg);
                 }
+            }
+        }
+    }
+
+    .information {
+        width: 100%;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+
+        background: darken($color: $dark-blue, $amount: 5);
+
+        &.reverse {
+            flex-direction: row-reverse;
+            background: darken($color: $dark-blue, $amount: 7)
+        }
+
+        & > * {
+            margin: 20px 40px;
+        }
+
+        img {
+            height: 200px;
+        }
+
+        span {
+            font-size: 30px;
+        }
+
+        @media only screen and (max-width: 1000px) {
+            flex-direction: row;
+            img {
+                height: 150px;
             }
         }
     }

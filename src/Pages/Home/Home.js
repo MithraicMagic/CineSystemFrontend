@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import { Link } from 'react-router-dom';
+import Information from './Information';
 
 class Home extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class Home extends React.Component {
         this.state = {
             dbMovies: [],
             movies: [],
-            amountShownMovies: Math.ceil(1 + ((window.innerWidth - 800) / 400)),
+            amountShownMovies: Math.ceil(1 + (Math.max((window.innerWidth - 800), 0) / 400)),
             moviePage: 0};
 
         this.updateWidth = this.updateWidth.bind(this);
@@ -25,7 +26,7 @@ class Home extends React.Component {
     }
 
     updateWidth() {
-        this.setState({amountShownMovies: Math.ceil(1 + ((window.innerWidth - 800) / 400)), moviePage: 0});
+        this.setState({ amountShownMovies: Math.ceil(1 + (Math.max((window.innerWidth - 800), 0) / 400)), moviePage: 0});
     }
 
     updateMoviePage(val) {
@@ -101,6 +102,16 @@ class Home extends React.Component {
                         <div className="arrow right"></div>
                     </div>
                 </div>
+
+                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/movie.svg" alt="Movie">
+                    The best trending movies, all playing in one cinema
+                </Information>
+                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/theater.svg" alt="Theater" reverse={true}>
+                    Great quality screens, showing the movies in all of their glory
+                </Information>
+                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/ticket.svg" alt="Movie">
+                    The best trending movies, all playing in one cinema
+                </Information>
             </div>
         )
     }
