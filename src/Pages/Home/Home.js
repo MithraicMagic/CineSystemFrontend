@@ -53,7 +53,7 @@ class Home extends React.Component {
             .then((res) => {
                 res.forEach(movie => {
                     this.setState({dbMovies: [...this.state.dbMovies, movie]})
-                })
+                });
             });
     }
     
