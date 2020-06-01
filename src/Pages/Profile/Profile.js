@@ -109,7 +109,7 @@ export default class Profile extends Component {
             return (
                 <div className="profile">
                     {this.state.error !== null ? this.state.error : null}
-                    <img src={this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
+                    <img src={'http://img.ikhoudvanfilms.com/' + this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
                     <p>{this.state.userInfo.username}</p>
                     <p>{this.state.userInfo.mail}</p>
                     <p>{this.state.userInfo.pointsAmount}</p>
