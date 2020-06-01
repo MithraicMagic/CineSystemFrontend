@@ -51,7 +51,7 @@ export default class Profile extends Component {
             let icons = [];
 
             this.state.availableIcons.forEach((icon, i) => {
-                icons.push(<img className="available-icon" src={icon.source} alt="user-icon" key={i} onClick={this.setSelected}></img>)
+                icons.push(<img className="available-icon" src={'https://img.ikhoudvanfilms.com/' + icon.source} alt="user-icon" key={i} onClick={this.setSelected}></img>)
             });
 
             return icons;
@@ -82,7 +82,7 @@ export default class Profile extends Component {
             },
             method: 'POST',
             body: JSON.stringify({
-                "source": chosenIcon.src
+                "source": chosenIcon.src.replace('https://img.ikhoudvanfilms.com/', '')
             })
         })
         .then(res => res.json())
