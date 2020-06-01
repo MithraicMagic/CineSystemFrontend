@@ -7,7 +7,6 @@ import Auth from '../../auth';
 export default class Header extends React.Component {
     getAccountButton() {
         if (Auth.isTokenPresent()) {
-            sessionStorage.setItem('username', 'Nick Walraven');
             return (
                 <div className="dropdown">
                     <span><div key={0}>{sessionStorage.getItem('username')}</div></span>
