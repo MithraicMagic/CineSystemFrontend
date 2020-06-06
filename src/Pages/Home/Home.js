@@ -103,13 +103,13 @@ class Home extends React.Component {
                     </div>
                 </div>
 
-                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/movie.svg" alt="Movie">
+                <Information src="https://img.ikhoudvanfilms.com/icons/movie.svg" alt="Movie">
                     The best trending movies, all playing in one cinema
                 </Information>
-                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/theater.svg" alt="Theater" reverse={true}>
+                <Information src="https://img.ikhoudvanfilms.com/icons/theater.svg" alt="Theater" reverse={true}>
                     Great quality screens, showing the movies in all of their glory
                 </Information>
-                <Information src="https://img.ikhoudvanfilms.com/cinema/icons/ticket.svg" alt="Movie">
+                <Information src="https://img.ikhoudvanfilms.com/icons/ticket.svg" alt="Movie">
                     The best trending movies, all playing in one cinema
                 </Information>
             </div>
