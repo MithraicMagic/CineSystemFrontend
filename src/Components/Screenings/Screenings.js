@@ -15,7 +15,7 @@ export default class Screenings extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/api/screenings/movie/' + this.state.movieId)
+        fetch('https://ikhoudvanfilms.com/api/screenings/movie/' + this.state.movieId)
             .then(res => res.json())
             .then(res => {
                 const cinemas = [];
