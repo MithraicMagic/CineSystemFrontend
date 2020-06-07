@@ -4,7 +4,6 @@ import './style.scss'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from './Pages/Home/Home';
-import About from './Pages/About/About';
 import Movie from './Pages/Movie/Movie';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
