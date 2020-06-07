@@ -10,6 +10,8 @@ import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Profile from './Pages/Profile/Profile';
 import Logout from './Pages/Logout/Logout';
+import NoMatch from './Pages/NoMatch/NoMatch';
+import Screening from './Pages/Screening/Screening';
 
 export default function App() {
   return (
@@ -22,7 +24,9 @@ export default function App() {
         <Route path={'/register'} component={Register}/>
         <Route path={'/profile'} component={Profile}/>
         <Route path={'/movie/:id'} component={Movie}/>
+        <Route path={'/screening/:id'} component={Screening}/>
         <Route path={'/logout'} component={Logout}/>
+        <Route path={'/*'} component={NoMatch}/>
       </Switch>
     </Router>
   )

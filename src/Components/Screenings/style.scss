@@ -1,0 +1,83 @@
+@import './../../colors';
+
+.screening-overview {
+    width: 100%;
+    background: $dark-blue-darkest;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0 0 10px 0;
+
+    .overview-header {
+        margin: 10px 0;
+        font-size: 30px;
+    }
+
+    .cinema {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 97.5%;
+
+        margin: 0 0 10px 0;
+
+        background: darken($dark-blue-darkest, $amount: 2);
+
+        .cinema-name {
+            color: $yellow;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .dates {
+            display: flex;
+            justify-content: space-evenly;
+            width: 98%;
+
+            margin: 0 0 10px 0;
+
+            .date {
+                width: 100%;
+                margin: 0 5px;
+                background: darken($dark-blue-darkest, $amount: 3);
+
+                .day {
+                    background: darken($dark-blue-darkest, $amount: 4);
+                    font-size: 25px;
+                    margin: 0 0 5px 0;
+                }
+
+                .timeslots {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    a {
+                        padding: 10px;
+                        margin:  0 0 5px 0;
+                        border-radius: 10px;
+
+                        font-weight: 500;
+                        text-decoration: none;
+
+                        color: $dark-blue;
+                        background: $yellow;
+                        transition: all .2s;
+
+                        &:hover {
+                            background: $yellow-darker
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .screening-overview {
+        width: 100%;
+    }
+}

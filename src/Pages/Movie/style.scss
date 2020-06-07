@@ -1,62 +1,57 @@
 @import './../../colors';
 
 .movie-page {
-    height: calc(100vh - 60px);
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    justify-content: center;
 
-    img {
-        border-radius: 5px;
-        padding: 10px;
-    }
-
-    .movie-info {
-        flex-grow: 2;
+    .movie {
         display: flex;
-        height: 100%;
+        align-items: center;
         flex-direction: column;
-        align-items: flex-start;
-        width: 900px;
+        width: 1000px;
+        background: darken($dark-blue, $amount: 3);
 
-        .title {
-            align-self: center;
-            font-size: 60px;
-            text-align: center;
+        img {
+            border-radius: 5px;
+            margin: 10px 0 0 0;
         }
 
-        .extra-info {
-            margin: 5px 0;
+        .movie-info {
+            flex-grow: 2;
             display: flex;
+            height: 100%;
             flex-direction: column;
-            width: 100%;
-            text-align: left;
+            align-items: flex-start;
+            width: 97.5%;
 
-            div {
-                padding: 10px;
+            .title {
+                align-self: center;
+                font-size: 60px;
+                text-align: center;
+            }
 
-                .subject {
-                    color: $yellow;
+            .extra-info {
+                margin: 5px 0;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                text-align: left;
+
+                div {
+                    padding: 10px;
+
+                    .subject {
+                        color: $yellow;
+                    }
+                }
+
+                div:nth-of-type(even) {
+                    background: $dark-blue-darker;
+                }
+                div:nth-of-type(odd) {
+                    background: $dark-blue-darkest;
                 }
             }
-
-            div:nth-of-type(even) {
-                background: $dark-blue-darker;
-            }
-            div:nth-of-type(odd) {
-                background: $dark-blue-darkest;
-            }
-        }
-
-        .summary {
-            text-align: justify;
-            margin: 10px;
-        }
-    }
-
-    @media only screen and (max-width: 900px) {
-        .movie-info {
-            width: 100%;
         }
     }
 }
