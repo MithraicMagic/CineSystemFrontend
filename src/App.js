@@ -19,13 +19,12 @@ export default function App() {
       <Header/>
       <Switch>
         <Route exact path={'/'} component={Home}/>
-        <Route path={'/about'} component={About}/>
-        <Route path={'/login'} component={Login}/>
-        <Route path={'/register'} component={Register}/>
-        <Route path={'/profile'} component={Profile}/>
-        <Route path={'/movie/:id'} component={Movie}/>
-        <Route path={'/screening/:id'} component={Screening}/>
-        <Route path={'/logout'} component={Logout}/>
+        <Route exact path={'/login'} component={Login}/>
+        <Route exact path={'/register'} component={Register}/>
+        <Route exact path={'/profile'} component={Profile}/>
+        <Route exact path={'/movie/:id'} component={Movie}/>
+        <Route exact path={'/screening/:id'} component={Screening}/>
+        <Route exact path={'/logout'} component={Logout}/>
         <Route path={'/*'} component={NoMatch}/>
       </Switch>
     </Router>
