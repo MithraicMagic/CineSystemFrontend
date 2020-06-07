@@ -110,7 +110,7 @@ class Home extends React.Component {
                     Great quality screens, showing the movies in all of their glory
                 </Information>
                 <Information src="https://img.ikhoudvanfilms.com/icons/ticket.svg" alt="Movie">
-                    The best trending movies, all playing in one cinema
+                    Get your tickets with our easy reservation system
                 </Information>
             </div>
         )
