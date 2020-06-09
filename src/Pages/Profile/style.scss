@@ -2,14 +2,32 @@
 
 .profile-page {
     height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
 
     .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 1000px;
+        background-color: darken($dark-blue, $amount: 3);
+
         img {
-            height: 100px;
+            margin: 20px 0;
+            height: 350px;
 
             &:hover {
                 cursor: pointer;
             }
+        }
+
+        .username {
+            font-size: 75px;
+        }
+
+        .email {
+            font-size: 35px;
         }
     }
 
@@ -39,8 +57,10 @@
             img {
                 box-sizing: border-box;
                 height: 100px;
-                transition: all 0.2s;
+                transition: all 0.1s;
                 border: solid 0px $light-blue;
+                border-radius: 15px;
+                cursor: pointer;
 
                 &:hover {
                     border: solid 5px $light-blue

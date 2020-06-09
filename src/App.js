@@ -15,7 +15,7 @@ import Screening from './Pages/Screening/Screening';
 export default function App() {
   return (
     <Router>
-      <Header/>
+      <Header />
       <Switch>
         <Route exact path={'/'} component={Home}/>
         <Route exact path={'/login'} component={Login}/>

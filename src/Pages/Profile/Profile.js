@@ -5,7 +5,7 @@ import './style.scss';
 export default class Profile extends Component {
     constructor(props) {
         super(props);
-        this.state = {userInfo: null, availableIcons: null};
+        this.state = {userInfo: null, reservations: [], availableIcons: null};
 
         this.changeIcon = this.changeIcon.bind(this);
 
@@ -29,7 +29,24 @@ export default class Profile extends Component {
             .then(res => res.json())
             .then(res => {
                 if (res.success) {
-                    this.setState({userInfo: res.message})
+
+                    const reservations = [];
+
+                    res.message.reservations.forEach(r => {
+                        const screening = reservations.find(reser => reser.id === r.screening.id);
+
+                        if (screening) {
+                            screening.count += 1;
+                        } else {
+                            r.screening.count = 1;
+                            reservations.push(r.screening);
+                        }
+                    });
+
+                    this.setState({
+                        userInfo: res.message.user, 
+                        reservations: reservations
+                    });
                 }
             });
     }
@@ -46,7 +63,7 @@ export default class Profile extends Component {
             });
     }
 
-    getIcons() {
+    showIcons() {
         if (this.state.availableIcons != null) {
             let icons = [];
 
@@ -74,6 +91,11 @@ export default class Profile extends Component {
 
     changeIcon() {
         let chosenIcon = document.getElementsByClassName('selected')[0];
+        this.toggleOverlay();
+
+        if (!chosenIcon) {
+            return;
+        }
 
         fetch('https://ikhoudvanfilms.com/api/users/changeIcon', {
             headers: {
@@ -87,8 +109,6 @@ export default class Profile extends Component {
         })
         .then(res => res.json())
         .then(res => {
-            this.toggleOverlay();
-
             if (res.success) {
                 this.getUserInfo();
             } else {
@@ -105,14 +125,35 @@ export default class Profile extends Component {
     }
 
     renderUserInformation() {
-        if (this.state.userInfo != null) {
+        if (this.state.userInfo) {
             return (
-                <div className="profile">
-                    {this.state.error !== null ? this.state.error : null}
+                <div className="user-info">
+                    {this.state.error ? this.state.error : null}
                     <img src={'https://img.ikhoudvanfilms.com/' + this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
-                    <p>{this.state.userInfo.username}</p>
-                    <p>{this.state.userInfo.mail}</p>
-                    <p>{this.state.userInfo.pointsAmount}</p>
+                    <div className="username">{this.state.userInfo.username}</div>
+                    <div className="email">{this.state.userInfo.mail}</div>
+                </div>
+            );
+        }
+    }
+
+    renderReservations() {
+        if (this.state.reservations) {
+            const reservations = [];
+
+            this.state.reservations.forEach(reservation => {
+                reservations.push(
+                    <div className="reservation">
+                        <div className="title">{reservation.movie.title}</div>
+                        <div className="chairs">You have ordered {reservation.count} seats for this movie</div>
+                    </div>
+                );
+            });
+
+            return (
+                <div className="reservations">
+                    <div className="title">Reservations</div>
+                    {reservations}
                 </div>
             )
         }
@@ -121,11 +162,14 @@ export default class Profile extends Component {
     render() {
         return (
             <div className="profile-page">
-                {this.renderUserInformation()} 
+                <div className="profile">
+                    {this.renderUserInformation()}
+                    {this.renderReservations()}
+                </div>
 
                 <div className="overlay hidden" id="overlay">
                     <div className="overlay-content">
-                        {this.getIcons()}
+                        {this.showIcons()}
                     </div>
                     <button className="submit-button" onClick={this.changeIcon}>Submit</button>
                 </div>       
