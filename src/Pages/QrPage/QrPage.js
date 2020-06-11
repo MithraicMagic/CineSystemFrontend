@@ -28,7 +28,7 @@ export default class QrPage extends Component {
                     <div className="title">{this.state.screening ? this.state.screening.movie.title : 'Loading...'}</div>
                     <div className="time">
                         {this.state.screening ? 
-                            this.state.screening.date.getMonth() + '-' + this.state.screening.date.getDate() + ' ' + this.state.screening.date.getHours() + ':' + this.state.screening.date.getHours() 
+                            this.state.screening.date.getDate() + '-' + (this.state.screening.date.getMonth() + 1) + ' ' + this.state.screening.date.getHours() + ':' + this.state.screening.date.getHours() 
                             : '-'}
                         </div>
                     <div className="location">{this.state.screening ? this.state.screening.theater.cinema.name : '-'}</div>
