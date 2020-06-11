@@ -1,0 +1,20 @@
+@import './../../colors';
+
+.back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    margin: 10px;
+    padding: 10px;
+
+    cursor: pointer;
+
+    background: $yellow;
+    color: $dark-blue-darkest;
+    border-radius: 5px;
+
+    &:hover {
+        background: $yellow-darker;
+    }
+}

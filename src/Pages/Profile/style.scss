@@ -1,9 +1,11 @@
 @import './../../colors';
 
 .profile-page {
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
+
+    position: relative;
 
     .profile {
         display: flex;
@@ -13,21 +15,80 @@
         width: 1000px;
         background-color: darken($dark-blue, $amount: 3);
 
-        img {
-            margin: 20px 0;
-            height: 350px;
+        .user-info {
+            img {
+                margin: 20px 0;
+                height: 350px;
 
-            &:hover {
-                cursor: pointer;
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .username {
+                font-size: 75px;
+            }
+
+            .email {
+                font-size: 35px;
             }
         }
 
-        .username {
-            font-size: 75px;
-        }
+        .reservations {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap: wrap;
 
-        .email {
-            font-size: 35px;
+            width: 90%;
+            margin: 25px 0;
+
+            border-radius: 5px;
+            background: lighten($dark-blue, $amount: 3);
+
+            .title {
+                font-size: 40px;
+                margin: 0 0 10px 0;
+            }
+
+            .reservation {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                margin: 0 0 10px 0;
+                width: 97.5%;
+                cursor: pointer;
+
+                background: darken($dark-blue, $amount: 2);
+                border-radius: 3px;
+
+                > * {
+                    flex: 1;
+                }
+
+                .title {
+                    margin: 5px;
+                    font-size: 25px;
+                }
+
+                .date-time-loc {
+                    margin: 5px;
+                }
+
+                .chairs {
+                    margin: 5px;
+
+                    @media only screen and (max-width: 1000px) {
+                        .extra {
+                            display: none;
+                        }
+                    }
+                }
+
+                &:hover {
+                    background: darken($dark-blue, $amount: 4);
+                }
+            }
         }
     }
 

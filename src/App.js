@@ -11,6 +11,7 @@ import Profile from './Pages/Profile/Profile';
 import Logout from './Pages/Logout/Logout';
 import NoMatch from './Pages/NoMatch/NoMatch';
 import Screening from './Pages/Screening/Screening';
+import QrPage from './Pages/QrPage/QrPage';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route exact path={'/login'} component={Login}/>
         <Route exact path={'/register'} component={Register}/>
         <Route exact path={'/profile'} component={Profile}/>
+        <Route exact path={'/profile/myQr/:id'} component={QrPage}/>
         <Route exact path={'/movie/:id'} component={Movie}/>
         <Route exact path={'/screening/:id'} component={Screening}/>
         <Route exact path={'/logout'} component={Logout}/>

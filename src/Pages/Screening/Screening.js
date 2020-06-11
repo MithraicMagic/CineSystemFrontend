@@ -3,6 +3,7 @@ import Chair from './Chair';
 import Auth from './../../auth';
 import './style.scss';
 import { Link } from 'react-router-dom';
+import BackButton from '../../Components/BackButton/BackButton';
 
 export default class Screening extends Component {
     constructor(props) {
@@ -162,6 +163,7 @@ export default class Screening extends Component {
     render() {
         return (
             <div className="screening-page">
+                <BackButton onClick={() => this.props.history.goBack()}></BackButton>
                 <div className="screening">
                     <div className="top">
                         <h1 className="title">{this.state.screening ? this.state.screening.movie.title : "Loading..."}</h1>

@@ -92,7 +92,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="home">
-                <h1 className="header-text">Featured Movies</h1>
+                <h1 className="header-text">Now in Theaters</h1>
                 <div className="movie-container">
                     <div className="arrow-container" onClick={() => this.updateMoviePage(-1)}>
                         <div className="arrow left"></div>

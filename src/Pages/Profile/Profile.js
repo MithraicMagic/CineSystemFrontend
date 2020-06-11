@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Auth from '../../auth';
 import './style.scss';
 
+const DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 export default class Profile extends Component {
     constructor(props) {
         super(props);
@@ -39,6 +41,7 @@ export default class Profile extends Component {
                             screening.count += 1;
                         } else {
                             r.screening.count = 1;
+                            r.screening.date = new Date(r.screening.date);
                             reservations.push(r.screening);
                         }
                     });
@@ -141,11 +144,16 @@ export default class Profile extends Component {
         if (this.state.reservations) {
             const reservations = [];
 
-            this.state.reservations.forEach(reservation => {
+            this.state.reservations.forEach((reservation, i) => {
                 reservations.push(
-                    <div className="reservation">
+                    <div key={i} className="reservation" onClick={() => this.props.history.push("/profile/myQr/" + reservation.id)}>
                         <div className="title">{reservation.movie.title}</div>
-                        <div className="chairs">You have ordered {reservation.count} seats for this movie</div>
+                        <div className="date-time-loc">
+                            <div className="loc">{reservation.theater.cinema.name}</div>
+                            <div className="date">{DAY[reservation.date.getDay()]}</div>
+                            <div className="time">{reservation.date.getHours()}:{reservation.date.getMinutes()}</div>
+                        </div>
+                        <div className="chairs"><span className="extra">You have ordered </span>{reservation.count} seats<span className="extra"> for this movie</span></div>
                     </div>
                 );
             });

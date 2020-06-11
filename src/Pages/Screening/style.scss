@@ -1,11 +1,11 @@
 @import './../../colors';
 
 .screening-page {
+    position: relative;
     display: flex;
     justify-content: center;
 
     .screening {
-        position: relative;
         display: flex;
         align-items: center;
         flex-direction: column;
