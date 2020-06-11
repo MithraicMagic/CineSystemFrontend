@@ -27,9 +27,19 @@ export default class Movie extends Component {
         return (
             <div className="movie-page">
                 <div className="movie">
-                    <img src={this.state.movie.Poster} alt="Movie Poster"></img>
+                    <img className="poster" src={this.state.movie.Poster} alt="Movie Poster"></img>
                     <div className="movie-info">
                         <div className="title">{this.state.movie.Title}</div>
+                        <div className="ratings">
+                            <div className="imdb">
+                                <img src="https://img.ikhoudvanfilms.com/icons/imdb.svg" alt="imdb-logo"></img>
+                                <span className="score">{this.state.movie.imdbRating}/10</span>
+                            </div>
+                            <div className="metacritic">
+                                <img src="https://img.ikhoudvanfilms.com/icons/metacritic.svg" alt="metacritic-logo"></img>
+                                <span className="score">{this.state.movie.Metascore}/100</span>
+                            </div>
+                        </div>
                         <div className="extra-info">
                             <Info subject="Length">{this.state.movie.Runtime}</Info>
                             <Info subject="Genre">{this.state.movie.Genre}</Info>

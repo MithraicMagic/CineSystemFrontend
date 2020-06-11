@@ -11,7 +11,7 @@
         width: 1000px;
         background: darken($dark-blue, $amount: 3);
 
-        img {
+        .poster {
             border-radius: 5px;
             margin: 10px 0 0 0;
         }
@@ -28,6 +28,38 @@
                 align-self: center;
                 font-size: 60px;
                 text-align: center;
+            }
+
+            .ratings {
+                width: 100%;
+                margin: 10px 0;
+
+                display: flex;
+                justify-content: center;
+
+                .imdb, .metacritic {
+                    display: flex;
+                    align-items: center;
+
+                    background: lighten($dark-blue, $amount: 2);
+
+                    img {
+                        height: 25px;
+                        margin: 15px 10px;
+                    }
+
+                    .score {
+                        margin: 15px 10px;
+                    }
+                }
+
+                div:first-child {
+                    border-radius: 5px 0 0 5px;
+                }
+
+                div:last-child {
+                    border-radius: 0 5px 5px 0;
+                }
             }
 
             .extra-info {
