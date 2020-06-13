@@ -132,7 +132,7 @@ export default class Profile extends Component {
             return (
                 <div className="user-info">
                     {this.state.error ? this.state.error : null}
-                    <img src={'https://img.ikhoudvanfilms.com/' + this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
+                    <img id="user-icon" src={'https://img.ikhoudvanfilms.com/' + this.state.userInfo.icon.source} onClick={this.toggleOverlay} alt="user-icon"></img>
                     <div className="username">{this.state.userInfo.username}</div>
                     <div className="email">{this.state.userInfo.mail}</div>
                 </div>
@@ -161,7 +161,7 @@ export default class Profile extends Component {
             return (
                 <div className="reservations">
                     <div className="title">Reservations</div>
-                    {reservations}
+                    {reservations.length > 0 ? reservations : <div className="message">You do not have any reservations yet</div>}
                 </div>
             )
         }

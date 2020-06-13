@@ -32,6 +32,8 @@ it("Movies are rendered with info", async () => {
         render(<Router history={createMemoryHistory()}><Movie /></Router>, container);
     });
 
+    expect(document.getElementsByClassName('poster')[0].src).toBe('https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg');
+
     expect(container.textContent).toBe('Inception2010');
 });
 
@@ -44,7 +46,9 @@ it('Home page is rendered properly without any movies', async () => {
 
     await act(async () => {
         render(<Home/>, container);
-    })
+    });
+
+    expect(document.getElementsByClassName('information').length).toBe(3);
 
     expect(container.textContent).toBe('Now in TheatersThe best trending movies, all playing in one cinemaGreat quality screens, showing the movies in all of their gloryGet your tickets with our easy reservation system');
 });

@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "message": {
+        "user": {
+            "id": 34,
+            "username": "Freekje",
+            "mail": "freek@freek.nl",
+            "icon": {
+                "id": 1,
+                "source": "001-man.svg"
+            }
+        },
+        "reservations": []
+    }
+}

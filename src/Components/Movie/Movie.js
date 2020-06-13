@@ -22,7 +22,7 @@ export default class Movie extends Component {
         if (!this.state.movie) return null;
         return (
             <div key={this.state.movie.title} className="movie">
-                <Link to={'/movie/' + this.state.movie.dbId}><img src={this.state.movie.poster} alt="Movie Poster" /></Link>
+                <Link to={'/movie/' + this.state.movie.dbId}><img className="poster" src={this.state.movie.poster} alt="Movie Poster" /></Link>
                 <div className="movie-info">
                     <div className="movie-title">{this.state.movie.title}</div>
                     <div className="movie-rating">{this.state.movie.yearOfRelease}</div>

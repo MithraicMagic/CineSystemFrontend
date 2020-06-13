@@ -12,6 +12,7 @@ RUN npm install -g serve
 
 COPY . ./
 
+RUN npm test
 RUN npm run build
 
 EXPOSE 3000
