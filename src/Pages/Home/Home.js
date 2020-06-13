@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss';
-import { Link } from 'react-router-dom';
 import Information from './Information';
+import Movie from '../../Components/Movie/Movie';
 
 class Home extends React.Component {
     constructor(props) {
@@ -44,7 +44,7 @@ class Home extends React.Component {
 
     async getMovies() {
         await this.getMoviesFromDb();
-        this.getInfo();
+        this.createMovies();
     }
 
     async getMoviesFromDb() {
@@ -56,36 +56,28 @@ class Home extends React.Component {
                 });
             });
     }
-    
-    getInfo() {
-        this.state.dbMovies.forEach(m => {
-            fetch('https://www.omdbapi.com/?apikey=190fc593&i=' + m.imdbID)
-            .then((res) => res.json())
-            .then((res) => {
-                let movie = {dbId: m.id, title: res.Title, yearOfRelease: res.Year, poster: res.Poster};
-                let newMovies = [...this.state.movies, movie];
-                this.setState({movies: newMovies});
-            });
-        })
+
+    createMovies() {
+        const movies = [];
+
+        this.state.dbMovies.sort((a, b) => a.title.localeCompare(b.title));
+
+        this.state.dbMovies.forEach((m, i) => {
+            movies.push(<Movie key={i} imdbId={m.imdbID} dbId={m.id}/>)
+        });
+
+        this.setState({movies});
     }
 
     showMovies() {
-        this.state.movies.sort((a, b) => a.title.localeCompare(b.title));
+        const elements = [];
 
-        let elements = [];
         for (let i = 0; i < this.state.amountShownMovies && i < this.state.movies.length; i++) {
             const movie = this.state.movies[i + (this.state.amountShownMovies * this.state.moviePage)];
-            if (movie === undefined) break;
-            elements.push(
-                <div key={movie.title} className="movie">
-                    <Link to={'/movie/' + movie.dbId}><img src={movie.poster} alt="Movie Poster" /></Link>
-                    <div className="movie-info">
-                        <div className="movie-title">{movie.title}</div>
-                        <div className="movie-rating">{movie.yearOfRelease}</div>
-                    </div>
-                </div>
-            )
+            if (!movie) break;
+            elements.push(movie);
         }
+
         return elements;
     }
 
