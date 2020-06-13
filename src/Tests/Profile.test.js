@@ -15,6 +15,7 @@ const availableIcons = [{ "id": 1, "source": "001-man.svg" }, { "id": 2, "source
 beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
+    sessionStorage.setItem('jwtoken', 'randomtoken');
 });
 
 afterEach(() => {
@@ -24,7 +25,6 @@ afterEach(() => {
 });
 
 it('render profile correctly without any reservations', async () => {
-    sessionStorage.setItem('jwtoken', 'randomtoken');
 
     fetchMock.mockResponses([JSON.stringify(noReservationProfile), { status: 200 }], [JSON.stringify(availableIcons), { status: 200 }]);
 
@@ -32,12 +32,14 @@ it('render profile correctly without any reservations', async () => {
         render(<Router history={createMemoryHistory()}><Profile /></Router>, container);
     });
 
+    expect(document.getElementById('user-icon').src).toBe('https://img.ikhoudvanfilms.com/001-man.svg');
+    expect(document.getElementsByClassName('username')[0].textContent).toBe('Freekje');
+    expect(document.getElementsByClassName('email')[0].textContent).toBe('freek@freek.nl');
+
     expect(document.getElementsByClassName('message')[0].textContent).toBe('You do not have any reservations yet')
 });
 
 it('avaiable icons are properly rendered', async () => {
-    sessionStorage.setItem('jwtoken', 'randomtoken');
-
     fetchMock.mockResponses([JSON.stringify(noReservationProfile), { status: 200 }], [JSON.stringify(availableIcons), { status: 200 }]);
 
     await act(async () => {
@@ -49,4 +51,17 @@ it('avaiable icons are properly rendered', async () => {
     expect(document.getElementById('overlay').classList.contains('hidden')).toBe(true);
     document.getElementById('user-icon').click();
     expect(document.getElementById('overlay').classList.contains('hidden')).toBe(false);
-})
+});
+
+it('render reservation properly if present', async () => {
+    fetchMock.mockResponses([JSON.stringify(profile), { status: 200 }], [JSON.stringify(availableIcons), { status: 200 }]);
+
+    await act(async () => {
+        render(<Router history={createMemoryHistory()}><Profile /></Router>, container);
+    });
+
+    const reservations = document.getElementsByClassName('reservation');
+
+    expect(reservations.length).toBe(1);
+    expect(reservations[0].textContent).toBe('InceptionCineStars RoosendaalThursday20:30You have ordered 1 seats for this movie');
+});
