@@ -13,7 +13,7 @@ export default class Header extends React.Component {
                     <div className="dropdown-content">
                         <Link to={'/profile'} className="button" key={1}>Profile</Link>
                         <Link to={'/logout'} className="button" key={2}>Logout</Link>
-                        {Auth.isAdmin ? <Link to={'/admin'} className="button" key={3}>Admin Panel</Link> : null}
+                        {Auth.isAdmin() ? <Link to={'/admin'} className="button" key={3}>Admin Panel</Link> : null}
                     </div>
                 </div>
             )
