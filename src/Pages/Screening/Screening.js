@@ -167,7 +167,7 @@ export default class Screening extends Component {
                 <div className="screening">
                     <div className="top">
                         <h1 className="title">{this.state.screening ? this.state.screening.movie.title : "Loading..."}</h1>
-                        <h2 className="time-loc">{this.state.screening ? this.state.screening.date.getHours() + ":" + this.state.screening.date.getMinutes() + " - " + this.state.screening.theater.cinema.name + " - Theater " + this.state.screening.theater.number : "Loading..."}</h2>
+                        <h2 className="time-loc">{this.state.screening ? this.state.screening.date.getHours() + ":" + this.state.screening.date.getMinutes() + " - " + this.state.screening.theater.cinema.name + " - " + this.state.screening.theater.name : "Loading..."}</h2>
                     </div>
                     <div className="theater-view">
                         <div className="screen"></div>

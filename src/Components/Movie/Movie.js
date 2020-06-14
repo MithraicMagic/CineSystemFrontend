@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default class Movie extends Component {
     constructor(props) {
         super(props);
-        this.state = { movie: null }
+        this.state = { loaded: false }
 
         this.getInfo();
     }
@@ -18,11 +18,31 @@ export default class Movie extends Component {
             });
     }
 
+    showImage() {
+        this.setState({loaded: true})
+    }
+
     render() {
-        if (!this.state.movie) return null;
+        if (!this.state.movie) {
+            return (
+                <div key={Math.random} className="movie">
+                    <Link to={'/movie/'}>
+                        <div className="poster"></div>
+                    </Link>
+                    <div className="movie-info">
+                        <div className="movie-title">Loading...</div>
+                        <div className="movie-rating">Loading...</div>
+                    </div>
+                </div>
+            );
+        };
+        
         return (
             <div key={this.state.movie.title} className="movie">
-                <Link to={'/movie/' + this.state.movie.dbId}><img className="poster" src={this.state.movie.poster} alt="Movie Poster" /></Link>
+                <Link to={'/movie/' + this.state.movie.dbId}>
+                    <img style={this.state.loaded ? null : {display: "none"}} onLoad={() => this.showImage()} className="poster" src={this.state.movie.poster} alt="Movie Poster" />
+                    <div style={this.state.loaded ? { display: "none" } : null} className="poster"></div>
+                </Link>
                 <div className="movie-info">
                     <div className="movie-title">{this.state.movie.title}</div>
                     <div className="movie-rating">{this.state.movie.yearOfRelease}</div>
