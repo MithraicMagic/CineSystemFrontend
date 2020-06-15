@@ -33,7 +33,7 @@ it('Page shows movie info properly', async () => {
     expect(document.getElementsByClassName('subject').length).toBe(7);
     expect(document.getElementsByClassName('poster')[0].src).toBe('https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg');
 
-    expect(container.textContent).toBe('Inception8.8/1074/100Length: 148 minGenre: Action, Adventure, Sci-Fi, ThrillerDirector: Christopher NolanWriter: Christopher NolanActors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom HardyProducer: N/ASummary: A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.Screenings');
+    expect(container.textContent).toBe('Inception8.8/1074/100Length: 148 minGenre: Action, Adventure, Sci-Fi, ThrillerDirector: Christopher NolanWriter: Christopher NolanActors: Leonardo DiCaprio, Joseph Gordon-Levitt, Ellen Page, Tom HardyProducer: N/ASummary: A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.ScreeningsThere are no screenings for this movie');
 });
 
 it('Render screenings properly', async () => {
