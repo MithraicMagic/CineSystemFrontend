@@ -105,10 +105,12 @@ export default class Screenings extends Component {
     }
     
     render() {
+        const screenings = this.showScreenings();
+
         return (
             <div className="screening-overview">
                 <span className="overview-header">Screenings</span>
-                {this.showScreenings()}
+                {screenings.length > 0 ? screenings : <div className="message">There are no screenings for this movie</div>}
             </div>
         )
     }
