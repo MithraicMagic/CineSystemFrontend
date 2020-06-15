@@ -12,6 +12,7 @@ export default class Admin extends Component {
             theaters: [],
             screenings: [],
             movies: [],
+            users: [],
             oldImdbId: 'hans'
         }
 
@@ -36,22 +37,24 @@ export default class Admin extends Component {
             cinemas: objects.cinemas,
             theaters: objects.theaters,
             screenings: objects.screenings,
-            movies: objects.movies
+            movies: objects.movies,
+            users: objects.users
         });
     }
 
     componentDidMount() {
-        const types = ['cinema', 'theater', 'screening', 'movie'];
+        const types = ['cinema', 'theater', 'screening', 'movie', 'user'];
 
         types.forEach(type => {
             document.getElementById(type).addEventListener('change', () => this.checkIfZero(type));
-            document.getElementById(type + '-submit').addEventListener('click', (e) => {
-                e.preventDefault(); 
-                this.additObject(type);
-            });
             document.getElementById(type + '-remove').addEventListener('click', (e) => {
                 e.preventDefault();
                 this.removeObject(type);
+            });
+
+            document.getElementById(type + '-submit').addEventListener('click', (e) => {
+                e.preventDefault();
+                this.additObject(type);
             });
         });
 
@@ -60,18 +63,32 @@ export default class Admin extends Component {
 
     checkIfZero(type) {
         const id = parseInt(document.getElementById(type).value);
+
         if (id === 0) {
             document.getElementById(type + '-edit').reset();
+
+            if (type === 'user') {
+                document.getElementById(type + '-submit').disabled = true;
+                document.getElementById(type + '-remove').disabled = true;
+                document.getElementById('user-name').disabled = true;
+                return;
+            }
+            
             document.getElementById(type + '-submit').innerText = 'Add';
             document.getElementById(type + '-remove').disabled = true;
             return;
         }
+
+        document.getElementById(type + '-submit').innerText = 'Edit';
+        document.getElementById(type + '-submit').disabled = false;
+        document.getElementById(type + '-remove').disabled = false;
 
         switch (type) {
             case 'cinema': this.getCinemaInfo(id); break;
             case 'theater': this.getTheaterInfo(id); break;
             case 'screening': this.getScreeningInfo(id); break;
             case 'movie': this.getMovieInfo(id); break;
+            case 'user': this.getUserInfo(id); break;
             default: break;
         }
     }
@@ -105,6 +122,15 @@ export default class Admin extends Component {
 
         document.getElementById('movie-title').value = movie.title;
         document.getElementById('movie-imdb-id').value = movie.imdbID;
+    }
+
+    getUserInfo(id) {
+        const user = this.state.users.find(u => u.id === id);
+
+        document.getElementById('user-name').value = user.username;
+        document.getElementById('user-mail').value = user.mail;
+
+        document.getElementById('user-name').disabled = false;
     }
 
     async fetchImdbInfo() {
@@ -158,6 +184,10 @@ export default class Admin extends Component {
             case 'movie':
                 dataObject.imdbID = formData.get('movieImdbId');
                 dataObject.title = document.getElementById('movie-title').value;
+                break;
+            case 'user':
+                dataObject.username = formData.get('userName');
+                dataObject.mail = document.getElementById('user-mail').value;
                 break;
             default:
                 break;
@@ -245,6 +275,18 @@ export default class Admin extends Component {
         return elements;
     }
 
+    renderUsers() {
+        const elements = [];
+
+        this.state.users.forEach((user, i) => {
+            elements.push(
+                <option key={i} value={user.id}>{user.username}</option>
+            );
+        });
+
+        return elements;
+    }
+
     render() {
         return (
             <div className="admin-page">
@@ -264,7 +306,7 @@ export default class Admin extends Component {
                         <input type="text" id="cinema-name" name="cinemaName"></input>
                         <div className="button-container">
                             <button id="cinema-submit" className="submit-button">Add</button>
-                            <button id="cinema-remove" className="remove-button">Delete</button>
+                            <button id="cinema-remove" className="remove-button" disabled>Delete</button>
                         </div>
                     </form>
 
@@ -284,7 +326,7 @@ export default class Admin extends Component {
                         </select>
                         <div className="button-container">
                             <button id="theater-submit" className="submit-button">Add</button>
-                            <button id="theater-remove" className="remove-button">Delete</button>
+                            <button id="theater-remove" className="remove-button" disabled>Delete</button>
                         </div>
                     </form>
 
@@ -312,7 +354,7 @@ export default class Admin extends Component {
                         </select>
                         <div className="button-container">
                             <button id="screening-submit" className="submit-button">Add</button>
-                            <button id="screening-remove" className="remove-button">Delete</button>
+                            <button id="screening-remove" className="remove-button" disabled>Delete</button>
                         </div>
                     </form>
 
@@ -330,7 +372,25 @@ export default class Admin extends Component {
                         <input type="text" id="movie-title" name="movieTitle" disabled></input>
                         <div className="button-container">
                             <button id="movie-submit" className="submit-button">Add</button>
-                            <button id="movie-remove" className="remove-button">Delete</button>
+                            <button id="movie-remove" className="remove-button" disabled>Delete</button>
+                        </div>
+                    </form>
+
+                    {/* The form to edit users */}
+                    <form id="user-edit">
+                        <div className="title">Users</div>
+                        <label htmlFor="user">Movie</label>
+                        <select id="user">
+                            <option value="0">No User Selected</option>
+                            {this.renderUsers()}
+                        </select>
+                        <label htmlFor="user-name">Username</label>
+                        <input type="text" id="user-name" name="userName" disabled></input>
+                        <label htmlFor="user-mail">User Mail</label>
+                        <input type="text" id="user-mail" name="userMail" disabled></input>
+                        <div className="button-container">
+                            <button id="user-submit" className="submit-button">Edit</button>
+                            <button id="user-remove" className="remove-button">Delete</button>
                         </div>
                     </form>
 

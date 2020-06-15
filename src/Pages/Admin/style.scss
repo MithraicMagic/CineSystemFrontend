@@ -45,6 +45,7 @@
                 }
 
                 &:disabled {
+                    background: $dark-blue-darkest;
                     color: white;
                 }
             }
@@ -70,6 +71,15 @@
                     color: white;
 
                     transition: all .2s;
+
+                    &:disabled {
+                        background: rgb(68, 68, 68);
+                        color: gray;
+
+                        &:hover{
+                            background: rgb(68, 68, 68);
+                        }
+                    }
                 }
 
                 .submit-button {
@@ -87,6 +97,14 @@
                         background: darken(rgb(224, 70, 43), $amount: 3);
                     }
                 }
+            }
+
+            &:first-child {
+                margin: 30px 0 10px 0;
+            }
+
+            &:last-child {
+                margin: 10px 0 30px 0;
             }
         }
     }
