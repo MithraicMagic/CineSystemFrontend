@@ -65,8 +65,7 @@ export default class Register extends Component {
     }
 
     registerFailed(res) {
-        document.getElementById('error-message').innerText = "Register failed";
-        document.getElementById('error-message').title = res.message;
+        document.getElementById('error-message').innerText = res.message;
         document.getElementById("register-button").innerText = "Register";
         document.getElementById("register-button").disabled = false;
     }

@@ -13,7 +13,7 @@ export default class Admin extends Component {
             screenings: [],
             movies: [],
             users: [],
-            oldImdbId: 'hans'
+            oldImdbId: ''
         }
 
         this.checkAdmin();
