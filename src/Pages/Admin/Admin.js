@@ -389,8 +389,8 @@ export default class Admin extends Component {
                         <label htmlFor="user-mail">User Mail</label>
                         <input type="text" id="user-mail" name="userMail" disabled></input>
                         <div className="button-container">
-                            <button id="user-submit" className="submit-button">Edit</button>
-                            <button id="user-remove" className="remove-button">Delete</button>
+                            <button id="user-submit" className="submit-button" disabled>Edit</button>
+                            <button id="user-remove" className="remove-button" disabled>Delete</button>
                         </div>
                     </form>
 
